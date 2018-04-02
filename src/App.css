@@ -1,0 +1,22 @@
+body{
+	/*background-image:url('images/mick.jpg');*/
+	/*background-color:#002fa7;/*klein*/
+	}
+.carte{
+	
+}
+.ImageCarte{
+	height:200px;
+	width:200px;
+}
+
+.AttDef{
+	width:30px;
+	height:30px;
+	display:inline;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
