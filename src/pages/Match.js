@@ -12,6 +12,7 @@ import mick from '../images/mick.jpg';
 import Carte from '../composants/Carte'
 import ToutesCartes from '../composants/ToutesCartes'
 import Main from '../composants/Main'
+import Deck from '../composants/Deck'
 import Saileure from '../composants/Saileure'
 
 
@@ -51,6 +52,7 @@ class Match extends Component {
 							 )}
  
 		  <Saileure/>
+		  <Deck/>
 		  <Main cartes={this.state.cartes}/>
       </Grid>
     );

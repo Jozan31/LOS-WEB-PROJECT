@@ -1,49 +1,31 @@
 import React, { Component } from 'react';
-import '../App.css';
-
-import Button from 'material-ui-next/Button';
-import Grid from 'material-ui-next/Grid';
-import List, { ListItem, ListItemText } from 'material-ui-next/List';
-import Divider from 'material-ui-next/Divider';
-
-
 
 import { Link } from 'react-router-dom'
 
+import ListeAdv from '../composants/ListeAdv'
+import ListeDemande from '../composants/ListeDemande'
+
+import Grid from 'material-ui-next/Grid';
 
 class RechercheAdv extends Component {
 	constructor(props) {
 		
 		super(props);
 		this.state={
-			listAdv:["Olive","Tom","Mark Landers","Le petit chauve (mais je ne me souviens plus comment il s'appelle)"],
-		}
+			tok:props.location.state.params.token,
+
+		};
 	}
 
+	
 
   render() {
     return (
       <Grid container>
-		 <List component="nav">
-			<ListItem >
-			  <ListItemText primary="Liste Adversaire" />
-			</ListItem>
-		  <Divider />
-			{this.state.listAdv.map((a, idx) => 
-				<ListItem button >
-				  <ListItemText primary={a} />
-				  
-				  <Link to='/Match'>
-						<Button >
-						  Affronter
-						</Button>
-					</Link>
-				</ListItem>
-
-							 )}
-			
-		  </List>
-		  
+		 <ListeAdv tok={this.state.tok}/>
+		 <Grid md={2}></Grid>
+		 <ListeDemande tok={this.state.tok}/>
+ 
       </Grid>
     );
   }

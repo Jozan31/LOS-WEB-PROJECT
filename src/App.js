@@ -11,14 +11,13 @@ import  Choix from './pages/Choix';
 import RechercheAdv from './pages/RechercheAdv';
 import Match from './pages/Match';
 
-import { BrowserRouter } from 'react-router-dom';
-import { Route, Root } from 'react-router-dom';
+import { BrowserRouter,Route,Root } from 'react-router-dom';
 
 
 class App extends Component {
   render() {
     return (
-	<BrowserRouter >
+	<BrowserRouter>
       <div>
       <Route exact={true} path="/" component={Accueil} />
 	  <Route path="/choix" component={Choix} />

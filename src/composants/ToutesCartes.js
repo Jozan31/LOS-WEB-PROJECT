@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import Carte from '../composants/Carte'
-import d from '../images/d.jpg';
 
 
 import Grid from 'material-ui-next/Grid';
@@ -28,7 +27,7 @@ tutti(){
 					var koala=[];
 					for (var i = 0; i < data["data"].length; i++) {
 						console.log(data["data"][i]["name"]+" "+data["data"][i]["info"]["attack"]+" "+data["data"][i]["info"]["defense"]);
-						koala.push({name:data["data"][i]["name"],att:data["data"][i]["info"]["attack"],def:data["data"][i]["info"]["defense"]});
+						koala.push({name:data["data"][i]["name"],att:data["data"][i]["info"]["attack"],def:data["data"][i]["info"]["defense"],photo:data["data"][i]["key"]});
 
 					}
 					return koala
@@ -48,7 +47,7 @@ tutti(){
 	<Grid>
 		{this.tutti()}
 		{this.state.cartes.map((m, idx) => 
-				<Carte key={idx} photo={d} name={m['name']} att={m['att']} def={m['def']}/>
+				<Carte key={idx} photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+m['photo']+'_1.jpg'} name={m['name']} att={m['att']} def={m['def']}/>
 		
 							 )}
     </Grid>

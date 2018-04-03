@@ -16,18 +16,18 @@ class Accueil extends Component {
 	<body>
       <Grid container alignItems='center'>
 		  
-		  <Grid md={4}></Grid>		
-		  <Grid md={4}  >
+		  <Grid item md={4}></Grid>		
+		  <Grid item md={4}  >
           <h1>LOS Groupe 2</h1>
 		  </Grid>
-		  <Grid md={4}></Grid>
+		  <Grid item md={4}></Grid>
 
 		  
-		  <Grid md={1}></Grid>
-		  <Grid md={4}><Connexion/></Grid>
-		  <Grid md={1}></Grid>
-		  <Grid md={4}><Inscription/></Grid>
-		  <Grid md={1}></Grid>
+		  <Grid item md={1}></Grid>
+		  <Grid item md={4}><Connexion/></Grid>
+		  <Grid item md={1}></Grid>
+		  <Grid item md={4}><Inscription/></Grid>
+		  <Grid item md={1}></Grid>
 	
 
       </Grid>
