@@ -10,6 +10,8 @@ import  Accueil from './pages/Accueil';
 import  Choix from './pages/Choix';
 import RechercheAdv from './pages/RechercheAdv';
 import Match from './pages/Match';
+import DeckPending from './pages/DeckPending';
+
 
 import { BrowserRouter,Route,Root } from 'react-router-dom';
 
@@ -23,6 +25,7 @@ class App extends Component {
 	  <Route path="/choix" component={Choix} />
 	  <Route path="/RechercheUnBro" component={RechercheAdv}/>
 	  <Route path="/Match" component={Match}/>
+	  <Route path="/AttentionUnMartienSEchappe" component={DeckPending}/>
 		</div>
 	  </BrowserRouter>
     );

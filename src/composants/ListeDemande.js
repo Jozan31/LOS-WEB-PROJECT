@@ -6,6 +6,9 @@ import Grid from 'material-ui-next/Grid';
 import List, { ListItem, ListItemText } from 'material-ui-next/List';
 import Divider from 'material-ui-next/Divider';
 
+import AccepterDemande from '../composants/AccepterDemande'
+
+
 import { Link } from 'react-router-dom'
 
 
@@ -55,7 +58,7 @@ raf(){
 			{this.state.req.map((a, idx) => 
 				<ListItem button >
 				  <ListItemText primary={a.name} />
-					<Button>Accepter</Button>
+					<AccepterDemande mid={a.matchmakingId} tok={this.props.tok}/>
 				  
 				</ListItem>
 

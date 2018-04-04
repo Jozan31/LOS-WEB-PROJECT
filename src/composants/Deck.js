@@ -3,8 +3,6 @@ import jb from '../images/jb.jpg';
 
 
 import ButtonBase from "material-ui-next/ButtonBase";
-import Card, { CardHeader, CardMedia, CardContent } from 'material-ui-next/Card';
-import Typography from 'material-ui-next/Typography';
 import Paper from 'material-ui-next/Paper';
 import Badge from 'material-ui-next/Badge';
 

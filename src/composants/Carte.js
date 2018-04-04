@@ -14,14 +14,22 @@ class Carte extends Component {
 	constructor(props) {
       super(props);
       this.state = { bord:{},
+					 clef:this.props.clef,
+					 choisie:this.props.choisie,
+					 sty:'solide red 20px'
 					};
+	this.selectio=this.selectio.bind(this);
   };
 	
+selectio(){
+	
+	this.setState({choisie:true,sty:'solide yellow 20px'});
+}	
 
   render() {
     return (
-	<ButtonBase>
-      <Card className='carte'  >
+	<ButtonBase onClick={this.selectio}>
+      <Card className='carte' style={{border:this.state.sty}}>
           <CardHeader
             title={this.props.name}
           />

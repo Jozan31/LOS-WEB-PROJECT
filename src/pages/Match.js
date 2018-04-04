@@ -7,13 +7,14 @@ import c from '../images/c.jpg';
 import d from '../images/d.jpg';
 import e from '../images/e.jpg';
 import mick from '../images/mick.jpg';
-
+import {withRouter, Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Carte from '../composants/Carte'
 import ToutesCartes from '../composants/ToutesCartes'
-import Main from '../composants/Main'
-import Deck from '../composants/Deck'
+import BandeauMatch from '../composants/BandeauMatch'
 import Saileure from '../composants/Saileure'
+import AdvParam from '../composants/AdvParam'
 
 
 import Button from 'material-ui-next/Button'
@@ -23,15 +24,21 @@ import Typography from 'material-ui-next/Typography';
 
 
 
-import { Link } from 'react-router-dom'
-
-
 
 
 class Match extends Component {
 	constructor(props) {
 		super(props);
 		this.state={
+			adversaire:{
+				nom:'props.location.state.params.advName',
+				id:'props.location.state.params.advId',
+				vie:150,
+				carteDeck:16,
+				carteMain:4,
+				carteBoard:{},
+			},
+			tok:'props.location.state.params.token',
 			cartes:[{photo:streaker,name:'Streaker',att:40,def:40},
 					{photo:a, name:'bonhommeA', att:40, def:40},
 					{photo:b, name:'bonhommeB', att:4, def:12},
@@ -40,20 +47,17 @@ class Match extends Component {
 					{photo:e, name:'bonhommeE', att:33, def:200},
 					{photo:mick, name:'Nickey', att:300, def:300}
 					],
+			tVie:'100%',		
 		}
 	}
   render() {
 
     return (
       <Grid container>
-	  {this.state.cartes.map((m, idx) => 
-				<Carte key={idx} photo={m['photo']} name={m['name']} att={m['att']} def={m['def']}/>
-		
-							 )}
- 
-		  <Saileure/>
-		  <Deck/>
-		  <Main cartes={this.state.cartes}/>
+	  <Saileure/>
+		<AdvParam para={this.state.adversaire}/>
+		<Grid style={{height:400}}></Grid>
+		<BandeauMatch tVie={this.tVie} cartes={this.state.cartes}/>
       </Grid>
     );
   }
