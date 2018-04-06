@@ -15,15 +15,15 @@ class Terrain extends Component {
 
   render() {
     return (
-      <Grid>
-        <Grid item md={20}>
+      <Grid container align="center">
+        <Grid item xs={12}>
               {[0,1,2,3,4].map(value =>
                 <ButtonBase>
                   <Card style={{ backgroundColor: 'blue', height: 250, width: 150}} className="card" ></Card>
                 </ButtonBase>
               )}
         </Grid>
-        <Grid item md={20}>
+        <Grid item xs={12}>
               {[0,1,2,3,4].map(value =>
                 <ButtonBase>
                   <Card style={{ backgroundColor: 'green', height: 250, width: 150}} className="card" ></Card>
