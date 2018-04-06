@@ -25,17 +25,17 @@ class ToutesCartes extends Component {
 					compte:20,
 					deck:[],
 					bor:{},
-					env:false,
+					env:true,
 					dec:'',
 					};
-					
+
 		  this.ajouterCarte = this.ajouterCarte.bind(this);
 		  this.readyToGO = this.readyToGo.bind(this);
 
   };
-  
 
-  
+
+
 ajouterCarte(k){
 	let dd=this.state.deck;
 	let cc=this.state.compte;
@@ -59,22 +59,22 @@ ajouterCarte(k){
 		dec=JSON.stringify(dec);
 		alert(dec);
 		this.setState({dec:dec,env:false});
-		
-		
+
+
 	}
-}  
-  
-	  
-  
+}
+
+
+
 tutti(){
-	
+
 	if(this.state.arrete){
 	fetch('https://los.ling.fr/cards/getAll', {
 				method: 'get'}, {mode: 'cors'}
 				)
 				.then(function(resp){return resp.json()})
 				.then(function(data) {
-					
+
 					var koala=[];
 					for (var i = 0; i < data["data"].length; i++) {
 						console.log(data["data"][i]["name"]+" "+data["data"][i]["info"]["attack"]+" "+data["data"][i]["info"]["defense"]);
@@ -104,29 +104,29 @@ readyToGo(){
 
 					/*}
 					else{alert('nope :'+JSON.stringify(data));}
-					
+
 			})
 			.catch(function(error) {
 				console.log(error);
 			});*/
 }
   render() {
-	
+
     return (
 	<Grid>
 		<AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Constituer votre deck , encore {this.state.compte} 
+            Constituer votre deck , encore {this.state.compte}
           </Typography>
         </Toolbar>
       </AppBar>
 	  <Grid md={12}style={{height:100}}></Grid>
 
-	  
+
 		{this.tutti()}
 		<Grid md={10}>
-		{this.state.cartes.map((m, idx) => 
+		{this.state.cartes.map((m, idx) =>
 				<ButtonBase onClick={()=>this.ajouterCarte(m.clef)} >
 				<Carte key={idx} choisie={false} photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+m['clef']+'_1.jpg'} name={m['name']} clef={m['clef']}att={m['att']} def={m['def']}/>
 				</ButtonBase>
@@ -139,15 +139,15 @@ readyToGo(){
 			  <ListItemText primary="Mon Deck" />
 			</ListItem>
 		  <Divider />
-			{this.state.deck.map((a, idx) => 
+			{this.state.deck.map((a, idx) =>
 				<ListItem button >
 				  <ListItemText onClick={()=>this.ajouterCarte(a)} primary={a} />
-						
+
 				</ListItem>
 
 
 							 )}
-			
+
 		  </List>
 		  </Grid>
 	<Button disabled={this.state.env} onClick={this.readyToGo} color='secondary'style={{position:'fixed',bottom:10, right:10, width:250,height:100,fontSize:42}}><strong >JOUER</strong></Button>
@@ -158,6 +158,3 @@ readyToGo(){
 }
 
 export default withRouter(ToutesCartes);
-
-
-

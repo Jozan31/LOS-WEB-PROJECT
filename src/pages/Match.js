@@ -15,6 +15,7 @@ import ToutesCartes from '../composants/ToutesCartes'
 import BandeauMatch from '../composants/BandeauMatch'
 import Saileure from '../composants/Saileure'
 import AdvParam from '../composants/AdvParam'
+import Terrain from '../composants/Terrain'
 
 
 import Button from 'material-ui-next/Button'
@@ -47,23 +48,20 @@ class Match extends Component {
 					{photo:e, name:'bonhommeE', att:33, def:200},
 					{photo:mick, name:'Nickey', att:300, def:300}
 					],
-			tVie:'100%',		
+			tVie:'100%',
 		}
 	}
   render() {
 
     return (
       <Grid container>
-	  <Saileure/>
-		<AdvParam para={this.state.adversaire}/>
-		<Grid style={{height:400}}></Grid>
-		<BandeauMatch tVie={this.tVie} cartes={this.state.cartes}/>
+			  <Saileure/>
+				<AdvParam para={this.state.adversaire}/>
+				<Terrain/>
+				<BandeauMatch tVie={this.tVie} cartes={this.state.cartes}/>
       </Grid>
     );
   }
 }
 
 export default Match;
-
-
-
