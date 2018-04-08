@@ -39,9 +39,10 @@ selectio(){
           />
           <CardContent>
 			<img  className="AttDef" src={sword} alt="épée zelda"/>
-			<Typography  class='' component="span">{this.props.att}&emsp;&emsp;</Typography>
+			<Typography  style={{display:'inline-block'}}component="span">{this.props.att}&emsp;&emsp;</Typography>
+			<br/>
 			<img  className="AttDef" src={shield} alt="épée zelda"/>
-			<Typography class='' component="span">{this.props.def}</Typography>
+			<Typography style={{display:'inline-block'}}component="span">{this.props.def}</Typography>
           </CardContent>
           
         </Card>  

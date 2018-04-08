@@ -36,4 +36,4 @@ accept(){
   }
 }
 
-export default AccepterDemande;
+export default withRouter(AccepterDemande);

@@ -25,17 +25,18 @@ class ToutesCartes extends Component {
 					compte:20,
 					deck:[],
 					bor:{},
-					env:true,
+					env:false,
 					dec:'',
 					};
-
-		  this.ajouterCarte = this.ajouterCarte.bind(this);
-		  this.readyToGO = this.readyToGo.bind(this);
+					
+		  this.ajouterCarte=this.ajouterCarte.bind(this);
+		this.readyToGo=this.readyToGo.bind(this);
+		//this.deckAuto=this.deckAuto.bind(this);
 
   };
+  
 
-
-
+  
 ajouterCarte(k){
 	let dd=this.state.deck;
 	let cc=this.state.compte;
@@ -59,26 +60,26 @@ ajouterCarte(k){
 		dec=JSON.stringify(dec);
 		alert(dec);
 		this.setState({dec:dec,env:false});
-
-
+		
+		
 	}
-}
-
-
-
+}  
+  
+	  
+  
 tutti(){
-
+	
 	if(this.state.arrete){
 	fetch('https://los.ling.fr/cards/getAll', {
 				method: 'get'}, {mode: 'cors'}
 				)
 				.then(function(resp){return resp.json()})
 				.then(function(data) {
-
+					
 					var koala=[];
 					for (var i = 0; i < data["data"].length; i++) {
 						console.log(data["data"][i]["name"]+" "+data["data"][i]["info"]["attack"]+" "+data["data"][i]["info"]["defense"]);
-						koala.push({name:data["data"][i]["name"],att:data["data"][i]["info"]["attack"],def:data["data"][i]["info"]["defense"],clef:data["data"][i]["key"]});
+						koala.push({name:data["data"][i]["name"],att:data["data"][i]["stats"]["attackdamage"],def:data["data"][i]["stats"]["armor"],clef:data["data"][i]["key"]});
 
 					}
 					return koala
@@ -92,41 +93,52 @@ tutti(){
 }
 
 readyToGo(){
-	/*
 	fetch('https://los.ling.fr/match/initDeck?deck='+this.state.dec+'&token='+this.props.tok, {
 				method: 'get'}, {mode: 'cors'}
 				)
 				.then(function(resp){return resp.json()})
 				.then(function(data) {
-					if(data.status=='ok'){*/
+					if(data.status=='ok'){
 						alert('deck confectionné');
 						this.props.history.push('/Match',{params:{ token:this.props.tok, advName:this.props.advName,advId:this.props.advId}});
 
-					/*}
+					}
 					else{alert('nope :'+JSON.stringify(data));}
-
-			})
+					
+			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
-			});*/
+			});
 }
+/*
+deckAuto(){
+		let dd=[{key:"Jax"},{key:"TahmKench"},{key:"Jhin"},{key:"Udyr"},{key:"Gangplank"},{key:"Poppy"},{key:"Illaoi"},{key:"Volibear"},{key:"Alistar"},{key:"Garen"},{key:"Rammus"},{key:"Blitzcrank"},{key:"Braum"},{key:"Darius"},{key:"Graves"},{key:"Tryndamere"},{key:"DrMundo"},{key:"JarvanIV"},{key:"Sion"},{key:"RekSai"}];
+		this.setState({	compte:0,
+						deck:dd,
+						env:false,
+						});
+	
+		
+}
+*/  
   render() {
-
+	
     return (
 	<Grid>
 		<AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Constituer votre deck , encore {this.state.compte}
+            Constituer votre deck , encore {this.state.compte} 
           </Typography>
+
         </Toolbar>
       </AppBar>
 	  <Grid md={12}style={{height:100}}></Grid>
 
-
+	  
 		{this.tutti()}
 		<Grid md={10}>
-		{this.state.cartes.map((m, idx) =>
+		{this.state.cartes.map((m, idx) => 
 				<ButtonBase onClick={()=>this.ajouterCarte(m.clef)} >
 				<Carte key={idx} choisie={false} photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+m['clef']+'_1.jpg'} name={m['name']} clef={m['clef']}att={m['att']} def={m['def']}/>
 				</ButtonBase>
@@ -139,15 +151,15 @@ readyToGo(){
 			  <ListItemText primary="Mon Deck" />
 			</ListItem>
 		  <Divider />
-			{this.state.deck.map((a, idx) =>
+			{this.state.deck.map((a, idx) => 
 				<ListItem button >
 				  <ListItemText onClick={()=>this.ajouterCarte(a)} primary={a} />
-
+						
 				</ListItem>
 
 
 							 )}
-
+			
 		  </List>
 		  </Grid>
 	<Button disabled={this.state.env} onClick={this.readyToGo} color='secondary'style={{position:'fixed',bottom:10, right:10, width:250,height:100,fontSize:42}}><strong >JOUER</strong></Button>
@@ -158,3 +170,6 @@ readyToGo(){
 }
 
 export default withRouter(ToutesCartes);
+
+
+

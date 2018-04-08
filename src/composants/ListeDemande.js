@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter, Link} from 'react-router-dom';
 
 
 import Button from 'material-ui-next/Button';
@@ -9,7 +10,6 @@ import Divider from 'material-ui-next/Divider';
 import AccepterDemande from '../composants/AccepterDemande'
 
 
-import { Link } from 'react-router-dom'
 
 
 
@@ -22,7 +22,7 @@ class ListeDemande extends Component {
 					req:[{"userId":"5ac2b19dfc3de50c263ca134","matchmakingId":"5ac2b1a2fc3de50c263ca135","name":"test7"},{"userId":"5ac2b19dfc3de50c263ca134","matchmakingId":"5ac2b1a2fc3de50c263ca135","name":"test7"},{"userId":"5ac2b19dfc3de50c263ca134","matchmakingId":"5ac2b1a2fc3de50c263ca135","name":"test7"},{"userId":"5ac2b19dfc3de50c263ca134","matchmakingId":"5ac2b1a2fc3de50c263ca135","name":"test7"},{"userId":"5ac2b2c71e5c1210f07eac4b","matchmakingId":"5ac2b2cd1e5c1210f07eac4c","name":"test5"},{"userId":"5ac2b19dfc3de50c263ca134","matchmakingId":"5ac2b1a2fc3de50c263ca135","name":"test7"}],
 		};
 	  this.raf = this.raf.bind(this);
-	  
+
 	}
 	
 raf(){
@@ -71,7 +71,7 @@ raf(){
   }
 }
 
-export default ListeDemande;
+export default withRouter(ListeDemande);
 
 
 
