@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import Carte from '../composants/Carte'
 import CarteBoard from '../composants/CarteBoard'
 import Saileure from '../composants/Saileure'
+import Terrain from '../composants/Terrain'
 
 
 import Button from 'material-ui-next/Button'
@@ -27,6 +28,7 @@ import GridList, { GridListTile, GridListTileBar } from 'material-ui-next/GridLi
 import AppBar from 'material-ui-next/AppBar';
 import Toolbar from 'material-ui-next/Toolbar';
 import Divider from 'material-ui-next/Divider';
+
 
 
 
@@ -220,6 +222,7 @@ class Match extends Component {
 						))}
 
 		<Grid md={12} style={{height:50}}></Grid>
+		<Terrain />
 		<Divider/>
 		<Grid md={12} style={{height:50}}></Grid>
 			<CarteBoard name='streaker' photo={streaker} def={0} att={0} />
