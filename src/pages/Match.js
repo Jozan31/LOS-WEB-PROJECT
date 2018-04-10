@@ -32,28 +32,28 @@ import Divider from 'material-ui-next/Divider';
 
 
 class Match extends Component {
-	
+
 	constructor(props) {
 		super(props);
-		
+
 		this.state={
 			adversaire:{"name":"ytrter","id":"","deck":16,"hp":150,"hand":4,"board":[],"turn":true,"cardPicked":false},
 			moi:{"name":"amerigo","id":"5ac46dee3b0c5824e64c025f","deck":16,"hp":150,"hand":[{"key":"Ezreal","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"}],"board":[],"turn":true,"cardPicked":false},
-			tok:props.location.state.params.token,
+			tok:this.props.tok,
 			refresh:'fin Tour',
 			tt:'',
 			atta:'',
 			yop:false,
-			
+
 		}
 		console.log(JSON.stringify(this.state.moi));
 			console.log(JSON.stringify(this.state.adversaire));
-		fetch('https://los.ling.fr/match/getMatch?token='+props.location.state.params.token, {
+		fetch('https://los.ling.fr/match/getMatch?token='+this.state.tok, {
 				method: 'get'}, {mode: 'cors'}
 				)
 				.then(function(resp){return resp.json()})
 				.then(function(data) {
-					
+
 					if(typeof data.data.player1.hand=="number"){
 						this.setState({moi:data.data.player2,adversaire:data.data.player1,refresh:"refresh"});
 					}
@@ -70,7 +70,7 @@ class Match extends Component {
 			console.log(JSON.stringify(this.state.moi));
 			console.log(JSON.stringify(this.state.adversaire));
 
-			
+
 			this.maj=this.maj.bind(this);
 			this.piocher=this.piocher.bind(this);
 			this.finTour=this.finTour.bind(this);
@@ -78,7 +78,7 @@ class Match extends Component {
 			this.rattattack=this.rattattack.bind(this);
 			this.defdef=this.defdef.bind(this);
 	}
-	
+
 	maj(){
 		alert('maj');
 		fetch('https://los.ling.fr/match/getMatch?token='+this.state.tok, {
@@ -94,7 +94,7 @@ class Match extends Component {
 					}
 					if(this.state.moi.turn){this.setState({tt:"T Ton Tour"});}
 					else{this.setState({tt:"C PAS Ton Tour"});}
-					
+
 			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
@@ -109,7 +109,7 @@ class Match extends Component {
 				.then(function(data) {
 					this.maj();
 					alert(data);
-					
+
 			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
@@ -125,7 +125,7 @@ class Match extends Component {
 				.then(function(data) {
 					this.maj();
 					alert(data);
-					
+
 			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
@@ -154,17 +154,17 @@ class Match extends Component {
 				.then(function(data) {
 					this.maj();
 					alert(data);
-					
+
 			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
 			});
-			
+
 		}
 				alert('dla');
 
 	}
-	
+
 	rattattack(a){
 		if(this.state.atta!=a){
 			alert('attaquant chjoisie');
@@ -181,13 +181,13 @@ class Match extends Component {
 				.then(function(data) {
 					this.maj();
 					alert(data);
-					
+
 			}.bind(this))
 			.catch(function(error) {
 				console.log(error);
 			});
 		}
-		
+
 	}
   render() {
 
@@ -196,7 +196,7 @@ class Match extends Component {
 	  <AppBar position="static" color="primary">
         <Toolbar>
           <Typography variant="title" color="inherit">
-            {this.state.tt} 
+            {this.state.tt}
           </Typography>
 
         </Toolbar>
@@ -209,16 +209,16 @@ class Match extends Component {
 				<Typography>PV: {this.state.adversaire.hp}</Typography>
 				<Typography>Deck: {this.state.adversaire.deck}</Typography>
 				<Typography>Main: {this.state.adversaire.deck}</Typography>
-				
+
 			</Paper>
 		</Grid>
-		
+
 		{this.state.adversaire.board.map(h => (
 							<Paper onClick={()=>this.defdef(h.key)}>
 							<CarteBoard name={h.name} photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+h.key+'_1.jpg'} def={h.stats.attackdamage} att={h.stats.armor} />
 							</Paper>
 						))}
-		
+
 		<Grid md={12} style={{height:50}}></Grid>
 		<Divider/>
 		<Grid md={12} style={{height:50}}></Grid>
@@ -271,6 +271,3 @@ class Match extends Component {
 }
 
 export default Match;
-
-
-
