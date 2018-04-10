@@ -10,7 +10,7 @@ import Button from 'material-ui-next/Button';
 
 class RechercheAdv extends Component {
 	constructor(props) {
-		
+
 		super(props);
 		this.state={
 			tok:props.location.state.params.token,
@@ -19,7 +19,7 @@ class RechercheAdv extends Component {
 	this.checkMatch = this.checkMatch.bind(this);
 
 	}
-	
+
   componentDidMount() {
     this.interval = setInterval(this.checkMatch, 5000);
   }
@@ -28,16 +28,16 @@ class RechercheAdv extends Component {
   }
 	checkMatch(){
 		fetch('https://los.ling.fr/matchmaking/participate?token='+this.state.tok, {
-		method: 'get'} 
+		method: 'get'}
 				)
 				.then(function(resp){return resp.json()})
 				.then(function(data) {
 					if(data.data.hasOwnProperty('match')){
 							this.props.history.push('/AttentionUnMartienSEchappe',{params:{ token:this.state.tok, advName:data.data.match.player2.name,advId:data.data.match.player2.id}});
 							//
-						
+
 					}
-					
+
 				}.bind(this))
 			.catch(function(error) {
 				console.log(error);
@@ -56,6 +56,3 @@ class RechercheAdv extends Component {
 }
 
 export default withRouter(RechercheAdv);
-
-
-
