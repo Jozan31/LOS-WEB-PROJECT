@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import Carte from '../composants/Carte'
 import CarteBoard from '../composants/CarteBoard'
 import Saileure from '../composants/Saileure'
-import Terrain from '../composants/Terrain'
 
 
 import Button from 'material-ui-next/Button'
@@ -39,10 +38,18 @@ class Match extends Component {
 		super(props);
 
 		this.state={
-			adversaire:{"name":"ytrter","id":"","deck":16,"hp":150,"hand":4,"board":[],"turn":true,"cardPicked":false},
+			adversaire:{"name":"ytrter","id":"","deck":16,"hp":150,"hand":4,"board":[
+				{"key":"Leona","name":"Ezreal","stats":{"armor":50.88,"armorperlevel":3.5,"attackdamage":30.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
+
+			],"turn":true,"cardPicked":false},
 			moi:{"name":"amerigo","id":"5ac46dee3b0c5824e64c025f","deck":16,"hp":150,"hand":[
 				{"key":"Ezreal","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
-				{"key":"Ezreal","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"}
+				{"key":"Taric","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
+				{"key":"Azir","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
+				{"key":"Veigar","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
+				{"key":"Katarina","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
+				{"key":"Leona","name":"Ezreal","stats":{"armor":21.88,"armorperlevel":3.5,"attackdamage":55.66,"attackdamageperlevel":2.41,"attackrange":550,"attackspeedoffset":0,"attackspeedperlevel":2.8,"crit":0,"critperlevel":0,"hp":484.4,"hpperlevel":80,"hpregen":6.424,"hpregenperlevel":0.55,"movespeed":325,"mp":360.6,"mpperlevel":42,"mpregen":8.092,"mpregenperlevel":0.65,"spellblock":30,"spellblockperlevel":0},"title":"Explorateur prodigue"},
+
 			],"board":[],"turn":true,"cardPicked":false},
 			tok:this.props.tok,
 			refresh:'fin Tour',
@@ -85,7 +92,6 @@ class Match extends Component {
 	}
 
 	maj(){
-		alert('maj');
 		fetch('https://los.ling.fr/match/getMatch?token='+this.state.tok, {
 				method: 'get'}, {mode: 'cors'}
 				)
@@ -113,7 +119,6 @@ class Match extends Component {
 				.then(function(resp){return resp.text()})
 				.then(function(data) {
 					this.maj();
-					alert(data);
 
 			}.bind(this))
 			.catch(function(error) {
@@ -129,7 +134,6 @@ class Match extends Component {
 				.then(function(resp){return resp.text()})
 				.then(function(data) {
 					this.maj();
-					alert(data);
 
 			}.bind(this))
 			.catch(function(error) {
@@ -156,7 +160,6 @@ class Match extends Component {
 				.then(function(resp){return resp.text()})
 				.then(function(data) {
 					this.maj();
-					//alert(data);
 
 			}.bind(this))
 			.catch(function(error) {
@@ -164,16 +167,14 @@ class Match extends Component {
 			});
 
 		}
-				alert('dla');
 
 	}
 
 	rattattack(a){
 		if(this.state.atta!=a){
-			alert('attaquant chjoisie');
 			this.setState({atta:a,yop:true});
 		}
-		else{alert('attaquant plus choisie');this.setState({atta:'',yop:false});}
+		else{this.setState({atta:'',yop:false});}
 	}
 	defdef(a){
 		if(this.state.yop){
@@ -183,7 +184,6 @@ class Match extends Component {
 				.then(function(resp){return resp.text()})
 				.then(function(data) {
 					this.maj();
-					alert(data);
 
 			}.bind(this))
 			.catch(function(error) {
@@ -192,6 +192,8 @@ class Match extends Component {
 		}
 
 	}
+
+
   render() {
 
     return (
@@ -216,14 +218,30 @@ class Match extends Component {
 			</Paper>
 		</Grid>
 
-		{this.state.adversaire.board.map(h => (
-							<Paper onClick={()=>this.defdef(h.key)}>
-							<CarteBoard name={h.name} photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+h.key+'_1.jpg'} def={h.stats.attackdamage} att={h.stats.armor} />
-							</Paper>
-						))}
-
 		<Grid md={12} style={{height:50}}></Grid>
-		<Terrain badgeContent={this.state.moi.board} />
+			<Grid container align="center">
+
+				<Grid item xs={12}>
+
+					{this.state.adversaire.board.map(h => (
+									<ButtonBase onClick={()=>this.defdef(h.key)}>
+										<CarteBoard name={h.name}  photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+h.key+'_1.jpg'} def={h.stats.attackdamage} att={h.stats.armor} />
+									</ButtonBase>
+								))}
+
+				</Grid>
+
+				<Grid item xs={12}>
+
+					{this.state.moi.board.map(h => (
+										<ButtonBase onClick={()=>this.rattattack(h.key)}>
+											<CarteBoard name={h.name}  photo={'http://ddragon.leagueoflegends.com/cdn/img/champion/splash/'+h.key+'_1.jpg'} def={h.stats.attackdamage} att={h.stats.armor} />
+										</ButtonBase>
+								))}
+
+				</Grid>
+
+			</Grid>
 		<Divider/>
 		<Grid md={12} style={{height:50}}></Grid>
 		<Grid container alignContent='space-around' alignItems='stretch'>
