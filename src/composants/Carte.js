@@ -14,14 +14,22 @@ class Carte extends Component {
 	constructor(props) {
       super(props);
       this.state = { bord:{},
+					 clef:this.props.clef,
+					 choisie:this.props.choisie,
+					 sty:'solide red 20px'
 					};
+	this.selectio=this.selectio.bind(this);
   };
 	
+selectio(){
+	
+	this.setState({choisie:true,sty:'solide yellow 20px'});
+}	
 
   render() {
     return (
-	<ButtonBase>
-      <Card className='carte'  >
+	<ButtonBase onClick={this.selectio}>
+      <Card className='carte' style={{border:this.state.sty}}>
           <CardHeader
             title={this.props.name}
           />
@@ -31,9 +39,10 @@ class Carte extends Component {
           />
           <CardContent>
 			<img  className="AttDef" src={sword} alt="épée zelda"/>
-			<Typography  class='' component="span">{this.props.att}&emsp;&emsp;</Typography>
+			<Typography  style={{display:'inline-block'}}component="span">{this.props.att}&emsp;&emsp;</Typography>
+			<br/>
 			<img  className="AttDef" src={shield} alt="épée zelda"/>
-			<Typography class='' component="span">{this.props.def}</Typography>
+			<Typography style={{display:'inline-block'}}component="span">{this.props.def}</Typography>
           </CardContent>
           
         </Card>  
